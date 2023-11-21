@@ -31,14 +31,15 @@ jobs:
 
       - name: Download Moodle
         run: |
+          mkdir moodleDowloaded
           wget https://github.com/moodle/moodle/archive/${{ matrix.moodle-version }}.zip
           unzip ${{ matrix.moodle-version }}.zip
-          mv moodle-${{ matrix.moodle-version }} moodle
+          mv moodle-${{ matrix.moodle-version }}  moodle
 
       - name: Install Moodle Plugin
         run: |
           cd moodle
-          git clone ${{ matrix.plugin-repo }} mod/${{ matrix.plugin-name }}
+          git clone ${{ matrix.plugin-repo }} local/${{ matrix.plugin-name }}
           Run cd moodle
   
       
