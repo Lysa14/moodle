@@ -36,15 +36,13 @@ jobs:
           unzip ${{ matrix.moodle-version }}.zip
           mv moodle-${{ matrix.moodle-version }}  moodle
 
-      - name: Install Moodle Plugin
+      - name: Install Moodle Plugin and install dependancies
         run: |
           cd moodle
           git clone ${{ matrix.plugin-repo }} local/${{ matrix.plugin-name }}
           cd moodle
+          composer install
 
-
-      - name: Install Dependencies
-        run:  composer install
 
       - name: Run PHPUnit Tests
         run: |
