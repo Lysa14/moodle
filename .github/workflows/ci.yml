@@ -1,5 +1,4 @@
 name: CI
-
 on: [push]
 
 jobs:
@@ -9,9 +8,9 @@ jobs:
     strategy:
       matrix:
         php-version: [7.4]
-        moodle-version: [MOODLE_401_STABLE]
-        plugin-repo: [https://github.com/Lysa14/moodle-local_cnw_smartcohort.git]
-        plugin-name: [cnw_smartcohort]
+        moodle-version: ["MOODLE_401_STABLE"]
+        plugin-repo: ["https://github.com/Lysa14/moodle-local_cnw_smartcohort.git"]
+        plugin-name: ["cnw_smartcohort"]
 
     steps:
       - name: Checkout Repository
