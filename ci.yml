@@ -1,0 +1,37 @@
+
+
+stages:
+  - setup
+  - test
+
+variables:
+  MOODLE_VERSION: "MOODLE_401_STABLE"  # Remplacer par la version de Moodle souhaitée
+  URL_DU_REPOSITORY_DU_PLUGIN: "https://github.com/Lysa14/moodle-local_cnw_smartcohort.git"  # Remplacer par l'URL de votre repository
+  NOM_DU_PLUGIN: "cnw_smartcohort"  # Remplacer  par le nom du  plugin
+
+before_script:
+  - apt-get update -qy
+  - apt-get install -y unzip
+
+# Etape d'installation de Moodle
+setup_moodle:
+  stage: setup
+  script:
+    - wget https://github.com/moodle/moodle/archive/$MOODLE_VERSION.zip
+    - unzip $MOODLE_VERSION.zip
+    - mv moodle-$MOODLE_VERSION moodle
+
+# Etape d'installation du plugin dans Moodle
+install_plugin:
+  stage: setup
+  script:
+    - cd moodle
+    - git clone $URL_DU_REPOSITORY_DU_PLUGIN mod/$NOM_DU_PLUGIN
+
+# Etape de tests avec PHPUnit
+run_tests:
+  stage: test
+  script:
+    - cd moodle
+    - vendor/bin/phpunit mod/$NOM_DU_PLUGIN/tests
+
