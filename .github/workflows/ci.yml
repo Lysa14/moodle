@@ -38,7 +38,7 @@ jobs:
 
       - name: Install Moodle Plugin 
         run: |
-          cd  moodle/moodle-${{ matrix.moodle-version }}
+          cd  moodle/moodle-${{ matrix.moodle-version }}/local
           git clone ${{ matrix.plugin-repo }} 
           cd moodle
           
