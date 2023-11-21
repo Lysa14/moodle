@@ -1,40 +1,49 @@
+name: CI
 
+on: [push]
 
-stages:
-  - setup
-  - test
+jobs:
+  setup_and_test:
+    runs-on: ubuntu-latest
 
-variables:
-  MOODLE_VERSION: "MOODLE_401_STABLE"  # Remplacer par la version de Moodle souhaitée
-  URL_DU_REPOSITORY_DU_PLUGIN: "https://github.com/Lysa14/moodle-local_cnw_smartcohort.git"  # Remplacer par l'URL de votre repository
-  NOM_DU_PLUGIN: "cnw_smartcohort"  # Remplacer  par le nom du  plugin
+    strategy:
+      matrix:
+        php-version: [7.4]
+        moodle-version: [MOODLE_401_STABLE]
+        plugin-repo: [https://github.com/Lysa14/moodle-local_cnw_smartcohort.git]
+        plugin-name: [cnw_smartcohort]
 
-before_script:
-  - apt-get update -qy
-  - apt-get install -y unzip
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
 
-# Etape d'installation de Moodle
-setup_moodle:
-  stage: setup
-  script:
-    - wget https://github.com/moodle/moodle/archive/$MOODLE_VERSION.zip
-    - unzip $MOODLE_VERSION.zip
-    - mv moodle-$MOODLE_VERSION moodle
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
 
-# Etape d'installation du plugin dans Moodle
-install_plugin:
-  stage: setup
-  script:
-    - cd moodle
-    - git clone $URL_DU_REPOSITORY_DU_PLUGIN mod/$NOM_DU_PLUGIN
+      - name: Install Composer
+        run: |
+          php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+          php composer-setup.php --install-dir=bin --filename=composer
+          php -r "unlink('composer-setup.php');"
 
-# Etape de tests avec PHPUnit
-run_tests:
-  stage: test
-  script:
-    - cd moodle
-    - vendor/bin/phpunit mod/$NOM_DU_PLUGIN/tests
-on:
-  push:
-    branches:
-      - main
+      - name: Install Dependencies
+        run: composer install
+
+      - name: Download Moodle
+        run: |
+          wget https://github.com/moodle/moodle/archive/${{ matrix.moodle-version }}.zip
+          unzip ${{ matrix.moodle-version }}.zip
+          mv moodle-${{ matrix.moodle-version }} moodle
+
+      - name: Install Moodle Plugin
+        run: |
+          cd moodle
+          git clone ${{ matrix.plugin-repo }} mod/${{ matrix.plugin-name }}
+
+      - name: Run PHPUnit Tests
+        run: |
+          cd moodle
+          vendor/bin/phpunit mod/${{ matrix.plugin-name }}/tests
+
