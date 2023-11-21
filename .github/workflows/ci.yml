@@ -47,3 +47,4 @@ jobs:
           cd moodle
           vendor/bin/phpunit mod/${{ matrix.plugin-name }}/tests
 
+
