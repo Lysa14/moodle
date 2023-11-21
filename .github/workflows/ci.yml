@@ -34,4 +34,7 @@ run_tests:
   script:
     - cd moodle
     - vendor/bin/phpunit mod/$NOM_DU_PLUGIN/tests
-
+on:
+  push:
+    branches:
+      - main
