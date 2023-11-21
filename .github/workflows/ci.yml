@@ -31,7 +31,7 @@ jobs:
 
       - name: Download Moodle
         run: |
-          mkdir moodleDowloaded
+          mkdir moodle
           wget https://github.com/moodle/moodle/archive/${{ matrix.moodle-version }}.zip
           unzip ${{ matrix.moodle-version }}.zip
           mv moodle-${{ matrix.moodle-version }}  moodle
@@ -40,7 +40,7 @@ jobs:
         run: |
           cd moodle
           git clone ${{ matrix.plugin-repo }} local/${{ matrix.plugin-name }}
-          Run cd moodle
+          
   
       
       - name: Install Dependencies
@@ -51,6 +51,6 @@ jobs:
       - name: Run PHPUnit Tests
         run: |
           cd moodle
-          vendor/bin/phpunit mod/${{ matrix.plugin-name }}/tests
+          vendor/bin/phpunit local/${{ matrix.plugin-name }}/tests
 
 
