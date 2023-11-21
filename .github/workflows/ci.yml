@@ -29,7 +29,9 @@ jobs:
           php -r "unlink('composer-setup.php');"
 
       - name: Install Dependencies
-        run: composer install
+        run: |
+          cd moodle
+          composer install
 
       - name: Download Moodle
         run: |
