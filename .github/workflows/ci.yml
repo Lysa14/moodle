@@ -40,7 +40,7 @@ jobs:
         run: |
           cd  moodle/moodle-${{ matrix.moodle-version }}/local
           git clone ${{ matrix.plugin-repo }} 
-          cd moodle
+          cd ../../..
           
 
       - name: Install dependancies
