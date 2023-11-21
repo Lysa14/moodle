@@ -44,9 +44,7 @@ jobs:
   
       
       - name: Install Dependencies
-        run: |
-          cd moodle
-          composer install
+        run:  composer install
 
       - name: Run PHPUnit Tests
         run: |
