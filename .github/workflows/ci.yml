@@ -44,7 +44,7 @@ jobs:
           
 
       - name: Install dependancies
-        run:|
+        run: |
           cd moodle/moodle-${{ matrix.moodle-version }}
           composer install
 
