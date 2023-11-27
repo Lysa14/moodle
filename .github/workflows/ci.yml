@@ -43,10 +43,16 @@ jobs:
           cd ../../..
           
 
-      - name: Install dependancies
+      - name: Install Composer Dependancies
         run: |
           cd moodle/moodle-${{ matrix.moodle-version }}
           composer install
+      
+      - name: Display Vendor Contents
+        run: |
+          cd moodle/moodle-${{ matrix.moodle-version }}
+          ls -l vendor/bin
+
 
       - name: Run PHPUnit Tests
         run: |
