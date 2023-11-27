@@ -44,7 +44,9 @@ jobs:
           
 
       - name: Install dependancies
-        run: composer install
+        run:|
+          cd moodle/moodle-${{ matrix.moodle-version }}
+          composer install
 
       - name: Run PHPUnit Tests
         run: |
