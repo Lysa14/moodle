@@ -43,10 +43,11 @@ jobs:
           cd ../../..
           
 
-      - name: Install Composer Dependancies
+      - name: Install Composer Dependancies and set PATH
         run: |
           cd moodle/moodle-${{ matrix.moodle-version }}
           composer install
+        export PATH=$PATH:./vendor/bin
       
       - name: Display Vendor Contents
         run: |
