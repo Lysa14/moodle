@@ -48,6 +48,15 @@ jobs:
           cd moodle/moodle-${{ matrix.moodle-version }}
           composer install
           export PATH=$PATH:./vendor/bin
+     
+      - name: Set Path in  phpunit.xml.dist
+        run: cp 
+          PATH/phpunit.xml.dist phpunit.xml.dist
+
+      - name: Run PHPUnit
+        run: vendor/bin/phpunit
+ 
+
       
       - name: Display Vendor Contents
         run: |
