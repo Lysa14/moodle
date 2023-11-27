@@ -50,7 +50,7 @@ jobs:
 
       - name: Run PHPUnit Tests
         run: |
-          cd moodle
+          cd moodle/moodle-${{ matrix.moodle-version }}
           vendor/bin/phpunit local/${{ matrix.plugin-name }}/tests
 
 
