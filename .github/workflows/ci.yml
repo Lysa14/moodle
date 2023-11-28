@@ -46,15 +46,14 @@ jobs:
       - name: Install Composer Dependancies and set PATH
         run: |
           cd moodle/moodle-${{ matrix.moodle-version }}
-          composer install
+          composer install --prefer-dist --no-progress --no-suggest
           export PATH=$PATH:./vendor/bin
      
-      - name: Set Path in  phpunit.xml.dist
-        run: cp 
-          PATH/phpunit.xml.dist phpunit.xml.dist
-
+     
       - name: Run PHPUnit
-        run: vendor/bin/phpunit
+        run:
+         cd moodle/moodle-${{ matrix.moodle-version }}
+          vendor/bin/phpunit
  
 
       
