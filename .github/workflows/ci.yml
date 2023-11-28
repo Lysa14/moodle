@@ -1,4 +1,4 @@
-name: CI
+name: CICD
 on: [push]
 
 jobs:
@@ -42,26 +42,36 @@ jobs:
           git clone ${{ matrix.plugin-repo }} 
           cd ../../..
           
-
-      - name: Install Composer Dependancies and set PATH
+      - name: Install Web Server (Apache)
         run: |
-          cd moodle/moodle-${{ matrix.moodle-version }}
-          composer install --prefer-dist --no-progress --no-suggest
-          export PATH=$PATH:./vendor/bin
+          sudo apt-get update
+          sudo apt-get install -y apache2
+          sudo systemctl start apache2
+     
+      - name: Install PHP and Extensions
+        run: |
+        sudo apt-get install -y php8.2 php8.2-cli php8.2-xml php8.2-simplexml php8.2-dom php8.2-curl php8.2-zip php8.2-gd
+        sudo systemctl restart apache
+      
+     
+      - name: Install PHPUnit
+        run: |
+          sudo apt-get install -y wget
+          wget https://phar.phpunit.de/phpunit-9.5.28.phar
+          chmod +x phpunit-9.5.28.phar
+          sudo mv phpunit-9.5.28.phar /usr/local/bin/phpunit
      
      
+
       - name: Run PHPUnit
         run: |
           cd moodle/moodle-${{ matrix.moodle-version }}
           vendor/bin/phpunit -c moodle/moodle-${{ matrix.moodle-version }}/phpunit.xml
- 
-
-      
-      - name: Display Vendor Contents
+  
+      - name: Install Composer Dependencies
         run: |
-          cd moodle/moodle-${{ matrix.moodle-version }}
-          ls -l vendor/bin
-
+          composer install
+      
 
       - name: Run PHPUnit Tests
         run: |
