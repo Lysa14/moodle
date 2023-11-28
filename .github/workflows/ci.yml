@@ -51,8 +51,8 @@ jobs:
      
      
       - name: Run PHPUnit
-        run:
-         cd moodle/moodle-${{ matrix.moodle-version }}
+        run: |
+          cd moodle/moodle-${{ matrix.moodle-version }}
           vendor/bin/phpunit
  
 
