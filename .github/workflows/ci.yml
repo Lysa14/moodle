@@ -70,11 +70,16 @@ jobs:
           chmod +x phpunit-9.5.28.phar
           sudo mv phpunit-9.5.28.phar /usr/local/bin/phpunit
      
+      - name: Install Composer Dependencies
+        run: |
+          composer install --prefer-dist --no-progress --no-suggest
+          export PATH=$PATH:./vendor/bin
+
       - name: Debugging
         run: |
           ls -la moodle/moodle-MOODLE_401_STABLE/local
-          ls -la vendor/bin
-          cat composer.json
+          ls -la moodle/moodle-MOODLE_401_STABLE/vendor
+          cat moodle/moodle-MOODLE_401_STABLE/composer.json
 
 
       - name: Run PHPUnit Tests
