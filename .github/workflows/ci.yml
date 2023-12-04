@@ -81,4 +81,4 @@ jobs:
       - name: Run PHPUnit Tests
         run: |
           cd moodle/moodle-${{ matrix.moodle-version }}/local
-          phpunit ${{ matrix.plugin-name }}/tests
+          phpunit ${{ matrix.plugin-name }}/tests/.
