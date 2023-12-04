@@ -82,5 +82,5 @@ jobs:
         run: |
           cd moodle/moodle-${{ matrix.moodle-version }}/local
           ls -R
-          phpunit moodle-local_${{ matrix.plugin-name }}/tests/smartcohort_test.php
+          phpunit moodle-local_${{ matrix.plugin-name }}/tests/.
 
