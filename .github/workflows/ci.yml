@@ -61,20 +61,16 @@ jobs:
       - name: Install Composer Dependencies
         run: |
           cd  moodle/moodle-${{ matrix.moodle-version }}/
-          composer install   
-     
+          composer install --prefer-dist --no-progress --no-suggest
+          export PATH=$PATH:./vendor/bin   
+    
       - name: Install PHPUnit
         run: |
           sudo apt-get install -y wget
           wget https://phar.phpunit.de/phpunit-9.5.28.phar
           chmod +x phpunit-9.5.28.phar
           sudo mv phpunit-9.5.28.phar /usr/local/bin/phpunit
-     
-      - name: Install Composer Dependencies
-        run: |
-          composer install --prefer-dist --no-progress --no-suggest
-          export PATH=$PATH:./vendor/bin
-
+  
       - name: Debugging
         run: |
           ls -la moodle/moodle-MOODLE_401_STABLE/local
