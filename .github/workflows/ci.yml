@@ -81,5 +81,6 @@ jobs:
       - name: Run PHPUnit Tests
         run: |
           cd moodle/moodle-${{ matrix.moodle-version }}/local
+          ls -R
           phpunit ${{ matrix.plugin-name }}/tests/smartcohort_test.php
 
