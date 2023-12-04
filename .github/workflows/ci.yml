@@ -70,6 +70,11 @@ jobs:
           chmod +x phpunit-9.5.28.phar
           sudo mv phpunit-9.5.28.phar /usr/local/bin/phpunit
      
+      - name: Debugging
+        run: |
+          ls -la moodle/moodle-MOODLE_401_STABLE/local
+          ls -la vendor/bin
+          cat composer.json
 
 
       - name: Run PHPUnit Tests
