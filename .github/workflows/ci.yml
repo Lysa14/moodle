@@ -95,7 +95,7 @@ jobs:
 
       - name: Install Dependencies for Angular
         run: |
-          cd ../..
+          pwd
           cd nodejs
           npm install
 
