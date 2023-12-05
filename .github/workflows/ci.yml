@@ -72,32 +72,36 @@ jobs:
           chmod +x phpunit-9.5.28.phar
           sudo mv phpunit-9.5.28.phar /usr/local/bin/phpunit
   
-
-
-
       - name: Run PHPUnit Tests
         run: |
           cd moodle/moodle-${{ matrix.moodle-version }}/local
           ls -R
           phpunit moodle-local_${{ matrix.plugin-name }}/tests/.
-          cd ../../..
+          
 
 
   test_angular:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest 
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
+
 
       - name: Setup Node.js for Angular
         uses: actions/setup-node@v3
         with:
           node-version: '14'
+
       - name: Install Dependencies for Angular
         run: |
+          cd ../../..
           npm install
+
+
       - name: Run Angular Tests
         run: |
+          cd ../../..
           npm test
 
   test_react:
@@ -142,10 +146,10 @@ jobs:
 
       - name: Setup Cobol
         run: |
-          #  Cobol setup commands here
+          #  Cobol setup commands 
       - name: Run Cobol Tests
         run: |
-          # Cobol testing commands here
+          # Cobol  test commands 
 
   test_javascript:
     runs-on: ubuntu-latest
