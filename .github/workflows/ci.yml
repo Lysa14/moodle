@@ -80,6 +80,7 @@ jobs:
           cd moodle/moodle-${{ matrix.moodle-version }}/local
           ls -R
           phpunit moodle-local_${{ matrix.plugin-name }}/tests/.
+          cd ../../..
 
 
   test_angular:
