@@ -2,7 +2,7 @@ name: CICD
 on: [push]
 
 jobs:
-  setup_and_test:
+  test_php:
     runs-on: ubuntu-latest
 
     strategy:
@@ -81,6 +81,87 @@ jobs:
           ls -R
           phpunit moodle-local_${{ matrix.plugin-name }}/tests/.
 
-    
+
+  test_angular:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js for Angular
+        uses: actions/setup-node@v3
+        with:
+          node-version: '14'
+      - name: Install Dependencies for Angular
+        run: |
+          npm install
+      - name: Run Angular Tests
+        run: |
+          npm test
+
+  test_react:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js for React
+        uses: actions/setup-node@v3
+        with:
+          node-version: '14'
+      - name: Install Dependencies for React
+        run: |
+          npm install
+      - name: Run React Tests
+        run: |
+          npm test
+
+  test_python:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+      - name: Install Dependencies for Python
+        run: |
+          pip install -r requirements.txt
+      - name: Run Python Tests
+        run: |
+          python -m unittest discover -s tests
+
+  test_cobol:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Setup Cobol
+        run: |
+          #  Cobol setup commands here
+      - name: Run Cobol Tests
+        run: |
+          # Cobol testing commands here
+
+  test_javascript:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js for JavaScript
+        uses: actions/setup-node@v3
+        with:
+          node-version: '14'
+      - name: Install Dependencies for JavaScript
+        run: |
+          npm install
+      - name: Run JavaScript Tests
+        run: |
+          npm test
+
     
 
