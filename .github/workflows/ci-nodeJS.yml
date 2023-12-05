@@ -21,7 +21,8 @@ jobs:
 
     - name: Install Dependencies
       run: |
-        cd moodle/nodejs 
+        pwd
+        cd nodejs 
         npm install
 
     - name: Run Tests
