@@ -21,6 +21,7 @@ jobs:
 
     - name: Install Dependencies
       run: |
+        ls -la
         cd nodejs 
         npm install
 
