@@ -95,13 +95,13 @@ jobs:
 
       - name: Install Dependencies for Angular
         run: |
-          cd ../../..
+          cd nodejs
           npm install
 
 
       - name: Run Angular Tests
         run: |
-          cd ../../..
+          cd nodejs
           npm test
 
   test_react:
@@ -163,6 +163,7 @@ jobs:
           node-version: '14'
       - name: Install Dependencies for JavaScript
         run: |
+          cd nodejs
           npm install
       - name: Run JavaScript Tests
         run: |
