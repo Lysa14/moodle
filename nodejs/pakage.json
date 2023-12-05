@@ -1,0 +1,15 @@
+// package.json
+
+{
+  "name": "my-node-app",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha test/test.js"
+  },
+  "devDependencies": {
+    "mocha": "^9.0.3",
+    "assert": "^2.0.0"
+  }
+}
+
