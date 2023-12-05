@@ -87,6 +87,7 @@ jobs:
 
       - name: Install Dependencies
         run: npm install
+        working-directory: moodle/moodle
 
 
       - name: Run Tests
