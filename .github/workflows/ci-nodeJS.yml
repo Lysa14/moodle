@@ -20,9 +20,13 @@ jobs:
         node-version: '14'
 
     - name: Install Dependencies
-      run: npm install
+      run: |
+        cd moodle/nodejs 
+        npm install
 
     - name: Run Tests
-      run: npm test
-      working-directory: nodejs
+      run: |
+        cd moodle/nodejs
+        npm test
+      
 
