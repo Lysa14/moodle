@@ -11,6 +11,7 @@ jobs:
         moodle-version: ["MOODLE_401_STABLE"]
         plugin-repo: ["https://github.com/Lysa14/moodle-local_cnw_smartcohort.git"]
         plugin-name: ["cnw_smartcohort"]
+        node-version: [14]
 
     steps:
       - name: Checkout Repository
@@ -79,4 +80,16 @@ jobs:
           cd moodle/moodle-${{ matrix.moodle-version }}/local
           ls -R
           phpunit moodle-local_${{ matrix.plugin-name }}/tests/.
+
+    
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+
+      - name: Install Dependencies
+        run: npm install
+
+
+      - name: Run Tests
+        run: npm test
+        
 
