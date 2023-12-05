@@ -21,13 +21,11 @@ jobs:
 
     - name: Install Dependencies
       run: |
-        cd ..
         cd nodejs 
         npm install
 
     - name: Run Tests
       run: |
-        cd ..
         cd nodejs
         npm test
       
