@@ -95,16 +95,19 @@ jobs:
 
       - name: Install Dependencies for Angular
         run: |
+          cd ../..
           cd nodejs
           npm install
 
 
       - name: Run Angular Tests
         run: |
+          cd ../..
           cd nodejs
           npm test
 
   test_react:
+
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
@@ -122,6 +125,7 @@ jobs:
           npm test
 
   test_python:
+
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
@@ -139,6 +143,7 @@ jobs:
           python -m unittest discover -s tests
 
   test_cobol:
+
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
@@ -147,13 +152,16 @@ jobs:
       - name: Setup Cobol
         run: |
           #  Cobol setup commands 
+          #
       - name: Run Cobol Tests
         run: |
           # Cobol  test commands 
 
   test_javascript:
+
     runs-on: ubuntu-latest
     steps:
+
       - name: Checkout Repository
         uses: actions/checkout@v2
 
@@ -161,12 +169,15 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '14'
+
       - name: Install Dependencies for JavaScript
         run: |
           cd nodejs
           npm install
+
       - name: Run JavaScript Tests
         run: |
+          cd nodejs
           npm test
 
     
