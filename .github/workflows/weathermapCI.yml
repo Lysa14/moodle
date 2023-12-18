@@ -17,16 +17,18 @@ jobs:
 
     - name: Install Dependencies for Angular
       run: |
-         
-          cd nodejs
+          cd ../..
+          mkdir node
+          cd node
           npm install
 
 
     - name: Build Angular
       run: |
+           cd node
            npm run build 
         
     - name: Run Angular Tests
       run: |
-         
+           cd node
            npm test 
