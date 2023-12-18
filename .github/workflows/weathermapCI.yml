@@ -17,16 +17,16 @@ jobs:
 
     - name: Install Dependencies for Angular
       run: |
-          cd moodle
+          cd nodejs
           npm install
 
 
     - name: Build Angular
       run: |
-           cd moodle
+           cd nodejs
            npm run build 
         
     - name: Run Angular Tests
       run: |
-          cd moodle
+          cd noodejs
           npm test 
