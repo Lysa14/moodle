@@ -100,11 +100,14 @@ jobs:
           npm install
 
 
+      - name: Build Angular
+        run: npm run build -- --prod
+        
       - name: Run Angular Tests
         run: |
           cd ../..
           cd nodejs
-          npm test
+          npm test -- --configuration=ci
 
   test_react:
 
