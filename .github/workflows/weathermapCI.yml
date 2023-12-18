@@ -29,5 +29,5 @@ jobs:
         
     - name: Run Angular Tests
       run: |
-          cd noodejs
-          npm test 
+           cd nodejs
+           npm test 
