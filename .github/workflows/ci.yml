@@ -96,7 +96,7 @@ jobs:
       - name: Install Dependencies for Angular
         run: |
           pwd
-          cd ../..
+          cd .. 
           mkdir nodejs
           cd nodejs
           npm install
@@ -104,13 +104,13 @@ jobs:
 
       - name: Build Angular
         run: |
-           cd ../..
+           cd ..
            cd nodejs
            npm run build -- --prod
         
       - name: Run Angular Tests
         run: |
-          cd ../..
+          cd ..
           cd nodejs
           npm test -- --configuration=ci
 
