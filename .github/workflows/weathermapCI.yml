@@ -24,10 +24,9 @@ jobs:
 
     - name: Build Angular
       run: |
-           cd nodejs
            npm run build 
         
     - name: Run Angular Tests
       run: |
-           cd nodejs
+         
            npm test 
