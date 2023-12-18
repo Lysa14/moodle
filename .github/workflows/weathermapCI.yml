@@ -25,10 +25,12 @@ jobs:
 
     - name: Build Angular
       run: |
+           cd ../..
            cd node
            npm run build 
         
     - name: Run Angular Tests
       run: |
+           cd ../..
            cd node
            npm test 
